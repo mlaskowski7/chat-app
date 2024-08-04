@@ -77,7 +77,7 @@ const Login = ({ show, setAuth }: LoginProps) => {
             type="text"
             name="username"
             placeholder="John Doe"
-            className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+            className="w-full text-black px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
           />
         </div>
         <div>
@@ -87,7 +87,7 @@ const Login = ({ show, setAuth }: LoginProps) => {
             type="text"
             name="phone"
             placeholder="+1111..."
-            className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+            className="w-full text-black px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
           />
         </div>
         <div className="flex items-baseline justify-between">
@@ -142,7 +142,7 @@ const Login = ({ show, setAuth }: LoginProps) => {
             type="text"
             name="phone"
             placeholder="+1111..."
-            className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+            className="w-full  text-black px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
           />
         </div>
         <div className="flex items-baseline justify-between">

@@ -48,21 +48,21 @@ interface ConversationProps {
 
 export default function Conversation({ data, auth, users }: ConversationProps) {
   const ref = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     ref.current?.scrollTo(0, ref.current.scrollHeight);
   }, [data]);
+
   return (
     <div className="p-4 space-y-4 overflow-auto" ref={ref}>
-      {data.map((item) => {
-        return (
-          <ConversationItem
-            right={item.user_id === auth.id}
-            content={item.content}
-            username={users.get(item.user_id) || "Unknown user"}
-            key={item.id}
-          />
-        );
-      })}
+      {data.map((item) => (
+        <ConversationItem
+          right={item.user_id === auth.id}
+          content={item.content}
+          username={users.get(item.user_id) || "Unknown user"}
+          key={item.id}
+        />
+      ))}
     </div>
   );
 }
