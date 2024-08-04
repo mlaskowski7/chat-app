@@ -1,11 +1,24 @@
 import React, { useState } from "react";
 
-interface createAcountParams {
+interface CreateAcountParams {
   username: string;
   phone: string;
 }
 
-async function createAccount({ username, phone }: createAcountParams) {
+interface SignInParams {
+  phone: string;
+}
+
+interface LoginProps {
+  show: boolean;
+  setAuth: (auth: any) => void;
+}
+
+interface FormProps {
+  setAuth: (auth: any) => void;
+}
+
+async function createAccount({ username, phone }: CreateAcountParams) {
   try {
     const url = "http://localhost:8080/users/create";
     let result = await fetch(url, {
@@ -22,7 +35,7 @@ async function createAccount({ username, phone }: createAcountParams) {
   }
 }
 
-async function signIn({ phone }) {
+async function signIn({ phone }: SignInParams) {
   try {
     const url = "http://localhost:8080/users/phone/" + phone;
     let result = await fetch(url);
@@ -32,14 +45,14 @@ async function signIn({ phone }) {
   }
 }
 
-const Login = ({ show, setAuth }) => {
+const Login = ({ show, setAuth }: LoginProps) => {
   const [isShowSignIn, setIsShowSignIn] = useState(false);
   const toggleIsShowSignIn = () => {
     setIsShowSignIn((prev) => !prev);
   };
 
-  const FormCreateUsername = ({ setAuth }) => {
-    const onCreateUsername = async (e) => {
+  const FormCreateUsername = ({ setAuth }: FormProps) => {
+    const onCreateUsername = async (e: any) => {
       e.preventDefault();
       let username = e.target.username.value;
       let phone = e.target.phone.value;
@@ -100,8 +113,8 @@ const Login = ({ show, setAuth }) => {
     );
   };
 
-  const FormSignIn = ({ setAuth }) => {
-    const onSignIn = async (e) => {
+  const FormSignIn = ({ setAuth }: FormProps) => {
+    const onSignIn = async (e: any) => {
       e.preventDefault();
       let phone = e.target.phone.value;
       if (phone === "") {
