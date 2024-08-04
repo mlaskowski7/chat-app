@@ -22,7 +22,7 @@ pub struct WsChatSession {
     pub hb: Instant,
     pub room: String,
     pub name: Option<String>,
-    pub addr: Addr<server::ChatServer>
+    pub addr: Addr<server::ChatServer>,
     pub db_pool: web::Data<DbPool>
 }
 
@@ -132,7 +132,7 @@ impl StreamHandler<Result<ws::Message, ws::ProtocolError>> for WsChatSession {
                             room_id: input.room_id.to_string(),
                             message: input.value.join(""),
                         };
-                        let _ = db::insert_new_conversation(&mut conn, new_conversation);
+                        let _ = db::add_new_conversation(&mut conn, new_conversation);
                         let msg = serde_json::to_string(&chat_msg).unwrap();
                         self.addr.do_send(server::ClientMessage {
                             id: self.id,

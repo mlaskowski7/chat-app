@@ -79,6 +79,17 @@ pub fn add_new_conversation(
     Ok(new_conversation)
 }
 
+pub fn get_conversation_by_room_uid(conn: &mut SqliteConnection, room_id: String) -> Result<Option<Conversation>, diesel::result::Error> {
+    use crate::schema::conversations::dsl::*;
+
+    let result = conversations
+        .filter(room_id.eq(room_id))
+        .first::<Conversation>(conn)
+        .optional()?;  // `optional` converts `NotFound` into `None`
+
+    Ok(result)
+}
+
 pub fn get_all_rooms(
     conn: &mut SqliteConnection
 ) -> Result<Vec<RoomResponse>, DbError> {

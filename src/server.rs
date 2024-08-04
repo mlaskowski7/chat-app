@@ -83,7 +83,7 @@ impl Handler<Connect> for ChatServer {
         self.sessions.insert(id, msg.addr);
         self.rooms
             .entry("main".to_string())
-            .or_insert_with(HashSet:new)
+            .or_insert_with(HashSet::new)
             .insert(id);
         self.send_message("main", &json!({
             "value" : vec![format!("{}", id)],
